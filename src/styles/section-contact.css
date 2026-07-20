@@ -1,0 +1,226 @@
+/* ===========================================================
+   Contact — "Open Channel"
+   A warm postcard, not a dark ghost-lettered contact block.
+   Left = the message side (headline + CTA). Right = the address
+   side (a dashed-border stamp, a postmark, and the real contact
+   routes laid out like address lines). A thin footer row closes
+   the whole site out.
+=========================================================== */
+
+.channel-section {
+  background: var(--paper);
+}
+
+.channel-inner {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 5vw, 3rem);
+}
+
+/* ---------- postcard ---------- */
+
+.channel-postcard {
+  position: relative;
+  background: var(--cream);
+  border: 1.5px solid var(--line-strong);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 32px 60px -30px rgba(36, 26, 16, 0.35),
+    0 2px 0 rgba(36, 26, 16, 0.04);
+  padding: clamp(2.25rem, 5vw, 3.5rem);
+  display: grid;
+  grid-template-columns: 1.5fr auto 1fr;
+  gap: clamp(1.75rem, 4vw, 3rem);
+  align-items: start;
+}
+
+.channel-divider {
+  align-self: stretch;
+  width: 0;
+  border-left: 1.5px dashed var(--line-strong);
+}
+
+/* ---------- message side ---------- */
+
+.channel-message {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.channel-kicker {
+  font-family: var(--font-hand);
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--coral-ink);
+  transform: rotate(-2deg);
+}
+
+.channel-headline {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2rem, 4.4vw, 3.1rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  max-width: 16ch;
+}
+
+.channel-sub {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 42ch;
+}
+
+.channel-cta-row {
+  margin-top: 0.75rem;
+}
+
+.signal-cta {
+  font-size: 1.05rem;
+}
+
+/* ---------- address side ---------- */
+
+.channel-address {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  min-width: 210px;
+}
+
+.channel-stampzone {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.channel-postmark {
+  width: 84px;
+  height: 42px;
+  margin-right: -18px;
+  opacity: 0.85;
+}
+
+.channel-stamp {
+  position: relative;
+  width: 68px;
+  height: 82px;
+  border: 3px dashed var(--line-strong);
+  border-radius: 6px;
+  background: var(--paper);
+  display: grid;
+  place-items: center;
+  transform: rotate(6deg);
+  flex-shrink: 0;
+}
+
+.channel-stamp-mark {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.3rem;
+  letter-spacing: -0.01em;
+  color: var(--coral);
+}
+
+.channel-routes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.channel-route a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 1px dotted var(--line-strong);
+  transition: border-color 0.25s var(--ease-out);
+}
+
+.channel-route a:hover {
+  border-bottom-color: var(--coral);
+}
+
+.channel-route a:hover .channel-route-value {
+  color: var(--coral);
+}
+
+.channel-route-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.channel-route-value {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.98rem;
+  color: var(--ink);
+  transition: color 0.25s var(--ease-out);
+}
+
+/* ---------- footer ---------- */
+
+.channel-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  color: var(--ink-faint);
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 860px) {
+  .channel-postcard {
+    grid-template-columns: 1fr;
+  }
+  .channel-divider {
+    display: none;
+  }
+  .channel-address {
+    border-top: 1px dashed var(--line-strong);
+    padding-top: 1.75rem;
+    min-width: 0;
+  }
+  .channel-stampzone {
+    justify-content: flex-start;
+  }
+  .channel-postmark {
+    margin-right: 0;
+    margin-left: -8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .channel-postcard {
+    padding: 1.75rem 1.5rem;
+  }
+  .channel-headline {
+    max-width: none;
+  }
+  .channel-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+  .channel-postmark {
+    display: none;
+  }
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .channel-route a {
+    transition: none;
+  }
+}

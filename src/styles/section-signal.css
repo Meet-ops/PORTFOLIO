@@ -1,0 +1,170 @@
+/* ===========================================================
+   Signal Note — "notes to self"
+   Distinct from every other section: a single pinned index card
+   sitting on plain warm paper, not a grid/board of many cards.
+   Handwritten heading (Caveat), legible Inter list, a coral
+   thumbtack, and a second sheet peeking out behind it for a
+   little physical depth. No eyebrow, no dark background, no
+   terminal styling.
+=========================================================== */
+
+.signal-section {
+  background: var(--cream);
+  display: flex;
+  justify-content: center;
+}
+
+.signal-inner {
+  display: flex;
+  justify-content: center;
+}
+
+/* ---------- the note ---------- */
+
+.signal-note {
+  position: relative;
+  width: 100%;
+  max-width: 580px;
+  background: #fdf6e9;
+  border-radius: var(--radius-md);
+  padding: clamp(2.25rem, 5vw, 3.25rem) clamp(1.75rem, 5vw, 3rem) clamp(2rem, 4vw, 2.75rem);
+  transform: rotate(-2deg);
+  box-shadow: 0 26px 50px -22px rgba(36, 26, 16, 0.35),
+    0 3px 8px rgba(36, 26, 16, 0.1);
+}
+
+/* a second sheet peeking out from behind, for a "stack of one
+   pinned note among others" feel without drawing a whole board */
+.signal-note::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--paper);
+  border-radius: var(--radius-md);
+  transform: rotate(5deg);
+  z-index: -1;
+  box-shadow: 0 14px 30px -18px rgba(36, 26, 16, 0.3);
+}
+
+.signal-pin {
+  position: absolute;
+  top: -11px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 30%, #ff9c88, var(--coral) 65%, var(--coral-ink) 100%);
+  box-shadow: 0 3px 6px rgba(36, 26, 16, 0.4);
+  z-index: 2;
+}
+
+/* ---------- heading ---------- */
+
+.signal-heading {
+  font-family: var(--font-hand);
+  font-weight: 700;
+  font-size: clamp(2.1rem, 5vw, 2.6rem);
+  line-height: 1;
+  color: var(--ink);
+  transform: rotate(-1deg);
+  margin-bottom: 0.4rem;
+}
+
+.signal-subheading {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  color: var(--ink-faint);
+  margin-bottom: 1.75rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px dashed var(--line-strong);
+}
+
+/* ---------- list ---------- */
+
+.signal-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.05rem;
+}
+
+.signal-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+
+.signal-mark {
+  flex: 0 0 auto;
+  width: 1.3rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--coral);
+}
+
+.signal-check {
+  width: 16px;
+  height: 15px;
+  color: var(--teal);
+  margin-top: 0.35rem;
+}
+
+.signal-text {
+  font-family: var(--font-body);
+  font-size: 1.04rem;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.signal-mark--check + .signal-text {
+  color: var(--ink);
+}
+
+/* ---------- signoff ---------- */
+
+.signal-signoff {
+  display: block;
+  text-align: right;
+  margin-top: 2rem;
+  font-family: var(--font-hand);
+  font-size: 1.4rem;
+  color: var(--ink-faint);
+  transform: rotate(-2deg);
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 620px) {
+  .signal-note {
+    transform: rotate(-1deg);
+  }
+}
+
+@media (max-width: 420px) {
+  .signal-note {
+    padding: 2rem 1.4rem 1.85rem;
+    transform: rotate(0deg);
+  }
+  .signal-note::before {
+    transform: rotate(2.5deg);
+  }
+  .signal-heading {
+    font-size: 2rem;
+  }
+  .signal-text {
+    font-size: 0.98rem;
+  }
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .signal-note {
+    transition: none;
+  }
+}

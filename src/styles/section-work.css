@@ -1,0 +1,376 @@
+/* ===================================================================
+   Case Files — Work/Projects section
+   Clickable manila-folder tabs. No numbered eyebrow, no dark bg,
+   no scroll-triggered magazine spreads, no device-frame mockups.
+=================================================================== */
+
+.case-section {
+  background: var(--cream);
+}
+
+.case-heading {
+  max-width: 46rem;
+  margin-bottom: clamp(2rem, 5vw, 3.25rem);
+}
+
+.case-heading-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2.1rem, 5vw, 3.4rem);
+  line-height: 1.05;
+  color: var(--ink);
+  margin: 0 0 0.6rem;
+}
+
+.case-heading-lede {
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  color: var(--ink-soft);
+  margin: 0;
+  max-width: 34rem;
+}
+
+/* ---------------------------------------------------------------
+   Drawer wrapper
+--------------------------------------------------------------- */
+
+.case-drawer {
+  position: relative;
+}
+
+/* ---------------------------------------------------------------
+   Tabs — physical file-folder index tabs
+--------------------------------------------------------------- */
+
+.case-tabs {
+  display: flex;
+  gap: 0.4rem;
+  align-items: flex-end;
+  overflow-x: auto;
+  overflow-y: visible;
+  padding: 0.5rem 0.35rem 0;
+  margin: 0 0 -1px;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+
+.case-tabs::-webkit-scrollbar {
+  height: 6px;
+}
+.case-tabs::-webkit-scrollbar-thumb {
+  background: var(--line-strong);
+  border-radius: 999px;
+}
+
+.case-tab {
+  flex: 0 0 auto;
+  position: relative;
+  appearance: none;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  color: var(--ink-faint);
+  background: var(--cream);
+  border: 1.5px solid var(--line-strong);
+  border-bottom: none;
+  border-radius: 12px 12px 0 0;
+  padding: 0.75rem 1.15rem 0.9rem;
+  box-shadow: 0 1px 0 var(--line);
+  transform: translateY(7px) scale(0.97);
+  opacity: 0.72;
+  transition: transform 0.3s var(--ease-out), opacity 0.3s var(--ease-out),
+    background 0.3s var(--ease-out), color 0.3s var(--ease-out),
+    box-shadow 0.3s var(--ease-out);
+  z-index: 1;
+}
+
+.case-tab::before {
+  content: '';
+  position: absolute;
+  top: 0.55rem;
+  left: 0.85rem;
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.35;
+}
+
+.case-tab--coral { color: var(--coral-ink); }
+.case-tab--teal { color: var(--teal); }
+.case-tab--grape { color: var(--grape); }
+
+.case-tab:hover {
+  opacity: 0.9;
+  transform: translateY(3px) scale(0.985);
+}
+
+.case-tab.is-active {
+  background: var(--paper);
+  color: var(--ink);
+  opacity: 1;
+  z-index: 3;
+  transform: translateY(0) scale(1);
+  box-shadow: 0 -2px 10px rgba(36, 26, 16, 0.06);
+  border-color: var(--line-strong);
+}
+
+.case-tab:focus-visible {
+  outline: 2.5px solid var(--coral);
+  outline-offset: 2px;
+}
+
+/* ---------------------------------------------------------------
+   Folder stack behind the open case file
+--------------------------------------------------------------- */
+
+.case-stackwrap {
+  position: relative;
+}
+
+.case-stack {
+  position: absolute;
+  inset: 0;
+  background: var(--paper);
+  border: 1.5px solid var(--line);
+  border-radius: 4px 20px 20px 20px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.case-stack--1 {
+  transform: rotate(1.6deg) translate(10px, 10px);
+  opacity: 0.55;
+}
+
+.case-stack--2 {
+  transform: rotate(-1.1deg) translate(-8px, 16px);
+  opacity: 0.35;
+}
+
+/* ---------------------------------------------------------------
+   Panel — the open manila folder
+--------------------------------------------------------------- */
+
+.case-panel {
+  position: relative;
+  z-index: 2;
+  background: var(--paper);
+  border: 1.5px solid var(--line-strong);
+  border-radius: 4px 20px 20px 20px;
+  padding: clamp(1.75rem, 4vw, 3rem);
+  box-shadow: 0 18px 40px -20px rgba(36, 26, 16, 0.35),
+    0 4px 14px -6px rgba(36, 26, 16, 0.18);
+  transform: rotate(var(--rot, -1deg));
+  animation: case-panel-in 0.38s var(--ease-out);
+}
+
+@keyframes case-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98) rotate(var(--rot, -1deg));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(var(--rot, -1deg));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case-panel {
+    animation: none;
+  }
+}
+
+.case-panel:focus-visible {
+  outline: 2.5px solid var(--coral);
+  outline-offset: 4px;
+}
+
+.case-panel-caseno {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 0.9rem;
+}
+
+.case-panel-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.7rem, 3.6vw, 2.5rem);
+  color: var(--ink);
+  margin: 0 0 0.85rem;
+  line-height: 1.05;
+}
+
+/* ---------------------------------------------------------------
+   Rubber stamp
+--------------------------------------------------------------- */
+
+.case-stamp {
+  position: relative;
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.45em 1.1em;
+  border: 2px solid currentColor;
+  transform: rotate(-7deg);
+  margin: 0 0 1.4rem;
+  background: transparent;
+}
+
+.case-stamp::before {
+  content: '';
+  position: absolute;
+  inset: 3px 4px 2px 3px;
+  border: 1px solid currentColor;
+  pointer-events: none;
+}
+
+.case-stamp--coral { color: var(--coral-ink); }
+.case-stamp--teal { color: var(--teal); }
+.case-stamp--grape { color: var(--grape); }
+
+/* ---------------------------------------------------------------
+   Copy
+--------------------------------------------------------------- */
+
+.case-panel-tagline {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--ink);
+  margin: 0 0 0.75rem;
+}
+
+.case-panel-desc {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  max-width: 42rem;
+  margin: 0 0 1.5rem;
+}
+
+/* ---------------------------------------------------------------
+   Tech tag stickers
+--------------------------------------------------------------- */
+
+.case-tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin: 0 0 1.75rem;
+  padding: 0;
+}
+
+.case-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  color: var(--ink-soft);
+  background: var(--cream);
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  padding: 0.35em 0.85em;
+  transition: transform 0.2s var(--ease-out), background 0.2s var(--ease-out);
+}
+
+.case-tag:nth-child(3n + 1) { transform: rotate(-1.4deg); }
+.case-tag:nth-child(3n + 2) { transform: rotate(0.9deg); }
+.case-tag:nth-child(3n) { transform: rotate(-0.4deg); }
+
+.case-tag:hover {
+  background: var(--coral-soft);
+  border-color: var(--coral);
+  color: var(--coral-ink);
+  transform: translateY(-2px) rotate(0deg);
+}
+
+/* ---------------------------------------------------------------
+   Link / note
+--------------------------------------------------------------- */
+
+.case-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.98rem;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 2px solid var(--coral);
+  padding-bottom: 0.15rem;
+  transition: color 0.25s var(--ease-out), border-color 0.25s var(--ease-out);
+}
+
+.case-link:hover {
+  color: var(--coral-ink);
+  border-color: var(--coral-ink);
+}
+
+.case-link:focus-visible {
+  outline: 2.5px solid var(--coral);
+  outline-offset: 3px;
+}
+
+.case-note {
+  font-style: italic;
+  color: var(--ink-faint);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+/* ===================================================================
+   Responsive
+=================================================================== */
+
+@media (max-width: 640px) {
+  .case-tab {
+    padding: 0.65rem 0.9rem 0.75rem;
+    font-size: 0.76rem;
+  }
+
+  .case-panel {
+    padding: 1.5rem 1.3rem;
+    border-radius: 4px 16px 16px 16px;
+  }
+
+  .case-stack {
+    border-radius: 4px 16px 16px 16px;
+  }
+}
+
+@media (max-width: 375px) {
+  .case-heading-title {
+    font-size: 1.85rem;
+  }
+
+  .case-tab {
+    padding: 0.55rem 0.75rem 0.65rem;
+    font-size: 0.72rem;
+  }
+
+  .case-panel {
+    padding: 1.25rem 1rem;
+  }
+
+  .case-panel-title {
+    font-size: 1.5rem;
+  }
+
+  .case-stamp {
+    font-size: 0.7rem;
+    padding: 0.4em 0.85em;
+  }
+}
